@@ -19,9 +19,10 @@ export function InputFields(){
         console.log(total)
     }
     
-    function handleHistory() {
+    function handleHistory(operation:string) {
         const historyClone = [...history];
-        historyClone.push(value.result.toString());
+        const historyItem = `${value.value1} ${operation} ${value.value2} = ${value.result}`
+        historyClone.push(historyItem);
         setHistory(historyClone);
     }
 
@@ -44,6 +45,7 @@ export function InputFields(){
         const sum = value.value1 + value.value2;
         const stateClone = {...value};
         stateClone.result = sum;
+        handleHistory('+')
         setValue(stateClone);
     }
 
@@ -51,6 +53,7 @@ export function InputFields(){
         const sum = value.value1 - value.value2;
         const stateClone = {...value};
         stateClone.result = sum;
+        handleHistory('-')
         setValue(stateClone);
     }
 
@@ -58,6 +61,7 @@ export function InputFields(){
         const sum = value.value1 * value.value2;
         const stateClone = {...value};
         stateClone.result = sum;
+        handleHistory('*')
         setValue(stateClone);
     }
 
@@ -65,6 +69,7 @@ export function InputFields(){
         const sum = value.value1 / value.value2;
         const stateClone = {...value};
         stateClone.result = sum;
+        handleHistory('÷')
         setValue(stateClone);
     }
 
@@ -86,7 +91,7 @@ export function InputFields(){
         <button onClick={handleMultiplication}>*</button>
         <button onClick={handleDivision}>÷</button>
 
-        <button onClick={handleHistory}> Add history</button>
+        {/* <button onClick={handleHistory}> Add history</button> */}
     
     <ul>
         {history.map(h => <li>{h}</li>)}
